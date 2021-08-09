@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-    뭐가뭔지
-    <form action="{% url 'accountapp:account' %}" method="post">
+    회원가입
+    <form action="{% url 'accountapp:create' %}" method="post">
         {% csrf_token %}
         {{ 회원가입 }}
         <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
