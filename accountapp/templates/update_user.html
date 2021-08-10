@@ -5,10 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-    회원가입
-    <form action="{% url 'accountapp:account_create' %}" method="post">
+    개인정보 수정 페이지
+    <form action="{% url 'accountapp:account_update' pk=data_pk %}" method="post">
         {% csrf_token %}
-        {{ 회원가입 }}
+        {{ 개인정보수정 }}
         <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
     </form>
 </body>

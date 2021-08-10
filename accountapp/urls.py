@@ -8,9 +8,9 @@ from accountapp import views
 app_name = 'accountapp'
 
 urlpatterns = [
-    path('create/', views.account, name='create'),
-    path('detail/<int:pk>', views.test, name='detail'),
+    path('create/', views.account_create, name='account_create'),
+    path('detail/<int:pk>', views.account_detail, name='account_detail'),
+    path('update/<int:pk>', views.account_update, name='account_update'),
 
-    path('test/', views.test2, name='test2'),
     # path('create/', account_create.as_view(), name='account_create'),
 ]
