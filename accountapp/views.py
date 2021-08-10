@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import request, Http404
 from django.shortcuts import render, redirect
 
@@ -5,8 +6,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import CreateView
 
-from accountapp.forms import Self_userCreateForm, Self_userUpdateForm
-from accountapp.models import Self_user
+from accountapp.forms import Self_userCreateForm, Self_userUpdateForm, Self_userLoginForm
+from accountapp.models import Self_user, Self_data
 
 
 def account_create(request):
@@ -24,33 +25,8 @@ def account_create(request):
             return redirect('accountapp:account_detail', entp.pk)
     context = {}
     context['회원가입'] = Self_userCreateForm
-    # if Self_userCreateForm.is_valid(Self_userCreateForm):
-    #     Self_userCreateForm.save()
-    #     return super().Self_userCreateForm(Self_userCreateForm)
-
-    # def form_valid(self, Self_userCreateForm):
 
     return render(request, 'create_user.html', context)
-
-# class account_create(request):
-#     def form_vaild(self, Self_userCreateForm):
-#         Self_userCreateForm.save()
-#
-#     def get_success_url(self):
-#         return reverse('mainapp:main')
-
-
-# class test():
-#     model = Self_user
-#     form_class = Self_userCreateForm
-#     template_name = 'create_user.html'
-#
-#     def form_valid(self, form):
-#         form.save()
-#         return super().form_valid(form)
-#
-#     def get_success_url(self):
-#         return reverse('mainapp')
 
 def account_detail(request, pk):
     data = Self_user.objects.filter(pk=pk)
@@ -86,6 +62,27 @@ def account_delete(request, pk):
     context={}
     context['data_pk'] = pk
     return render(request, 'delete_user.html', context)
+
+def account_login(request):
+    if request.method == "POST":
+        name = request.POST['self_name']
+        password = request.POST['self_password']
+        if Self_user.objects.filter(self_name = name) and Self_user.objects.filter(self_password = password):
+            for mbti in Self_user.objects.filter(self_name = name):
+                intp = mbti.pk
+            Self_data(self_name=name, self_password=password, self_pk=intp).save()
+            return redirect('mainapp:main')
+    context = {}
+    context['로그인'] = Self_userLoginForm
+    return render(request, 'login_user.html', context)
+
+def account_logout(request):
+    data = Self_data.objects.last()
+    for mbti in Self_data.objects.filter(pk=data.pk):
+        mbti.delete()
+    # last문은 for이 안돼???????
+    return redirect('mainapp:main')
+
 
 
 

@@ -13,6 +13,14 @@ class Self_user(models.Model):
     models.DateTimeField(auto_now_add=True, verbose_name='생성시간')
 
 
+class Self_data(models.Model):
+    self_name = CharField(max_length=15, null=False)
+    self_password = CharField(max_length=15, null=False)
+
+    self_pk = models.IntegerField(default=0)
+
+
+
 
 
 

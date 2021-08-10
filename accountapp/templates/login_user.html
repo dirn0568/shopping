@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    로그인 페이지
+    <form action="{% url 'accountapp:account_login' %}" method="post">
+        {% csrf_token %}
+        {{ 로그인 }}
+        <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+    </form>
+</body>
+</html>
