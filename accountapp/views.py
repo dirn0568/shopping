@@ -52,6 +52,15 @@ def account_create(request):
 #     def get_success_url(self):
 #         return reverse('mainapp')
 
+def account_detail(request, pk):
+    data = Self_user.objects.filter(pk=pk)
+    for intp in data:
+        context = {}
+        context['data'] = data
+        context['Nickname'] = intp.self_nickname
+        context['data_pk'] = pk
+    return render(request, 'detail_user.html', context)
+
 def account_update(request, pk):
     # Self_user(self_name='test7891011', self_password=1234, self_nickname='똒띠띠띠띠EL').save()
     if request.method == "POST":
@@ -69,13 +78,14 @@ def account_update(request, pk):
     context['data_pk'] = pk
     return render(request, 'update_user.html', context)
 
-def account_detail(request, pk):
-    data = Self_user.objects.filter(pk=pk)
-    for intp in data:
-        context = {}
-        context['data'] = data
-        context['Nickname'] = intp.self_nickname
-        context['data_pk'] = pk
-    return render(request, 'detail_user.html', context)
+def account_delete(request, pk):
+    if request.method == "POST":
+        for entp in Self_user.objects.filter(pk = pk):
+            entp.delete()
+            return redirect('mainapp:main')
+    context={}
+    context['data_pk'] = pk
+    return render(request, 'delete_user.html', context)
+
 
 

@@ -10,5 +10,6 @@
     {{ Nickname }}
     {{ data_pk }}
     <a href="{% url 'accountapp:account_update' pk=data_pk %}">개인정보 수정<a>
+        <a href="{% url 'accountapp:account_delete' pk=data_pk %}">계정 삭제<a>
 </body>
 </html>
