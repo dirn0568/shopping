@@ -5,12 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<img src="{{ 옷이미지 }}" alt="">
-<p></p>
-옷이름:{{ 옷이름 }}
-<p></p>
-옷가격:{{ 옷가격 }}
-<p></p>
-장바구니
+    <img src="{{ 옷이미지 }}" alt="">
+    <p></p>
+    옷이름:{{ 옷이름 }}
+    <p></p>
+    옷가격:{{ 옷가격 }}
+    <p></p>
+    <a href="{% url 'shopapp:shop_box' pk=shop_pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        장바구니에 담기
+    </a>
 </body>
 </html>

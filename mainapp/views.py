@@ -38,6 +38,7 @@ def detail_shop(request, pk):
         context['옷이미지'] = mbti.shop_img.url
         context['옷이름'] = mbti.shop_name
         context['옷가격'] = mbti.shop_cash
+        context['shop_pk'] = mbti.pk
     return render(request, 'detail_shop.html', context)
 
 

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    장바구니
+    <p></p>
+    {% for list in 장바구니 %}
+        {{ list.box_name }}<a href="{% url 'shopapp:shop_delete' pk=list.pk %}">&nbsp&nbsp&nbsp&nbspx</a>
+        <p></p>
+    {% endfor %}
+</body>
+</html>
