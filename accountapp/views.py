@@ -13,13 +13,11 @@ from accountapp.models import Self_user, Self_data
 def account_create(request):
     if request.method == "POST":
         form = Self_userCreateForm(request.POST)
-
         if form.is_valid():
             form.save(commit=False)
             form.save()
         else:
             raise Http404("회원가입이 되지않았습니다")
-
         Self_last = Self_user.objects.last()
         for entp in Self_user.objects.filter(pk = Self_last.pk):
             return redirect('accountapp:account_detail', entp.pk)
@@ -70,7 +68,8 @@ def account_login(request):
         if Self_user.objects.filter(self_name = name) and Self_user.objects.filter(self_password = password):
             for mbti in Self_user.objects.filter(self_name = name):
                 intp = mbti.pk
-            Self_data(self_name=name, self_password=password, self_pk=intp).save()
+                entp = mbti
+            Self_data(self_data=entp, self_name=name, self_password=password, self_pk=intp).save()
             return redirect('mainapp:main')
     context = {}
     context['로그인'] = Self_userLoginForm

@@ -5,17 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-    {{ Self_data.self_name }}
     {% if not data_pk %}
         <a href="{% url 'accountapp:account_login' %}">로그인</a>
     {% else %}
         {{ data_pk }}
         <a href="{% url 'accountapp:account_logout' %}">로그아웃</a>
         <a href="{% url 'accountapp:account_detail' pk=data_pk %}">개인 페이지</a>
+        <a href="{% url 'accountapp:account_detail' pk=data_pk %}">출석체크</a>
+        <a href="{% url 'accountapp:account_detail' pk=data_pk %}">주문내역조회</a>
+        <a href="{% url 'accountapp:account_detail' pk=data_pk %}">장바구니</a>
     {% endif %}
     <a href="{% url 'accountapp:account_create' %}">회원가입</a>
-    출석체크 주문내역조회
     <h1>개인 쇼핑몰 연습장</h1>
     반팔 반바지 티셔츠 셔츠 슈즈 쇼핑박스
+    <p></p>
+
+
+    {% for shop_list in 샵목록 %}
+        <a href="{% url 'mainapp:detail_shop' pk=shop_list.pk %}">
+            <img src="{{ shop_list.shop_img.url }}" alt="" width="300" height="300" style="border-radius: 20px;">
+        </a>
+    {% endfor %}
 </body>
 </html>

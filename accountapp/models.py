@@ -14,6 +14,8 @@ class Self_user(models.Model):
 
 
 class Self_data(models.Model):
+    self_data = models.ForeignKey(Self_user, on_delete=models.CASCADE, related_name='self_data')
+
     self_name = CharField(max_length=15, null=False)
     self_password = CharField(max_length=15, null=False)
 
