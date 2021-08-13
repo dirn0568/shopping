@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from accountapp.models import Self_data
-from mainapp.forms import Self_create_form
+from mainapp.forms import Self_create_form, testing123
 from mainapp.models import Self_create_shop
+from shop_divisionapp.models import Clothes_assemble, Clothes_choice
 
 
 def mainnet(request):
@@ -33,12 +34,16 @@ def create_shop(request):
 
 def detail_shop(request, pk):
     shop_url = Self_create_shop.objects.filter(pk=pk)
+    clothes_assemble = Clothes_assemble.objects.first()
+    clothes_choice = Clothes_choice.objects.filter(clothes_choice_title=clothes_assemble)
+    testing = testing123
     context={}
     for mbti in shop_url:
         context['옷이미지'] = mbti.shop_img.url
         context['옷이름'] = mbti.shop_name
         context['옷가격'] = mbti.shop_cash
         context['shop_pk'] = mbti.pk
+        context['clothes_choice_list'] = testing
     return render(request, 'detail_shop.html', context)
 
 

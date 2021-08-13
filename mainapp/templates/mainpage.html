@@ -16,8 +16,16 @@
         <a href="{% url 'shopapp:shop_list' pk=data_pk %}">장바구니</a>
     {% endif %}
     <a href="{% url 'accountapp:account_create' %}">회원가입</a>
+
     <h1>개인 쇼핑몰 연습장</h1>
-    반팔 반바지 티셔츠 셔츠 슈즈 쇼핑박스
+
+    <a href="{% url 'shop_divisionapp:create_assemble' %}">정장</a>
+    <a href="{% url 'shop_divisionapp:create_assemble' %}">셔츠</a>
+    <a href="{% url 'accountapp:account_logout' %}">반팔</a>
+    <a href="{% url 'accountapp:account_logout' %}">바지</a>
+    <a href="{% url 'accountapp:account_logout' %}">반바지</a>
+    <a href="{% url 'accountapp:account_logout' %}">신발</a>
+    <a href="{% url 'accountapp:account_logout' %}">악세사리</a>
     <p></p>
 
 

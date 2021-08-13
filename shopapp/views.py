@@ -12,7 +12,7 @@ def shop_box(request, pk):
     box_data2 = Self_user.objects.filter(pk=box_data2.self_pk)
     for shop in box_data:
         for shop2 in box_data2:
-            Self_box(self_box=shop2, box_name=shop.shop_name).save()
+            Self_box(self_box=shop2, box_img=shop.shop_img.url, box_name=shop.shop_name, box_cash=shop.shop_cash).save()
     return redirect('mainapp:detail_shop', pk=pk)
 
 def shop_list(request, pk):

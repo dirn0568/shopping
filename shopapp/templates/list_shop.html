@@ -8,8 +8,9 @@
     장바구니
     <p></p>
     {% for list in 장바구니 %}
-        {{ list.box_name }}<a href="{% url 'shopapp:shop_delete' pk=list.pk %}">&nbsp&nbsp&nbsp&nbspx</a>
+        <img src="{{ list.box_img }}" alt="" width="200" height="200">{{ list.box_name }}&nbsp{{ list.box_cash }}<a href="{% url 'shopapp:shop_delete' pk=list.pk %}">&nbsp&nbsp&nbsp&nbspx</a>
         <p></p>
     {% endfor %}
+    전부 주문하기
 </body>
 </html>
