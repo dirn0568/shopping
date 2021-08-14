@@ -16,6 +16,16 @@
         장바구니에 담기
     </a>
     주문하기
-    {{ clothes_choice_list }}
+    <form action="{% url 'mainapp:create_shop' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <select>
+            {% for choice_option in test %}
+            <option>{{ choice_option }}</option>
+            {% endfor %}
+        </select>
+        {{ test }}
+        <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+    </form>
+
 </body>
 </html>
