@@ -15,17 +15,7 @@
         {% csrf_token %}
         장바구니에 담기
     </a>
-    주문하기
-    <form action="{% url 'mainapp:create_shop' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <select>
-            {% for choice_option in test %}
-            <option>{{ choice_option }}</option>
-            {% endfor %}
-        </select>
-        {{ test }}
-        <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
-    </form>
-
+    <p></p>
+    <a href="{% url 'shop_order_app:order_page' pk=shop_pk %}">주문하기</a>
 </body>
 </html>
