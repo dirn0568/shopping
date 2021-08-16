@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>개인주문내역</h1>
+    {% for order_list in 옷주문 %}
+        <img src="{{ order_list.clothes_order_img.url }}" alt="" width="150px;" height="150px;">
+        {{ order_list.clothes_option_order_size }}
+        {{ order_list.clothes_option_order_color }}
+        {{ order_list.clothes_order_number }}
+    <p></p>
+    {% endfor %}
+
+</body>
+</html>

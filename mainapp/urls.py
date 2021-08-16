@@ -10,4 +10,5 @@ urlpatterns = [
 
     path('create_shop', views.create_shop, name='create_shop'),
     path('detail_shop/<int:pk>', views.detail_shop, name='detail_shop'),
+    path('order_list', views.order_list, name='order_list'),
 ]

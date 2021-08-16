@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from accountapp.models import Self_data
 from mainapp.models import Self_create_shop
 from shop_divisionapp.forms import Create_clothes_choice_option_size, Create_clothes_choice_option_color, \
     Create_clothes_choice_option_number
-from shop_divisionapp.models import Clothes_option_detail_title, Clothes_option_size, Clothes_option_color
+from shop_divisionapp.models import Clothes_option_detail_title, Clothes_option_size, Clothes_option_color, \
+    Clothes_option_detail_size, Clothes_option_detail_color, Clothes_option_number, Clothes_option_order_detail
 
 
 def order(request, pk):
@@ -35,5 +37,16 @@ def order(request, pk):
 
 def check(request, pk):
     print(request.POST, '#!#%!#%!#%!#%!#')
-    print(request.POST.submit, '#!#%!#%!#%!#%!#')
+    print(request.FILES, '33333333333332322222222222222222')
+    choice_size = request.POST['choice']
+    choice_color = request.POST['choice2']
+    choice_number = request.POST['order_number']
+    choice_user = Self_data.objects.first()
+    shop = Self_create_shop.objects.filter(pk=pk)
+    for mbti in shop:
+        choice_shop = mbti.shop_img
+    print(choice_user.self_data,'31531531513413413')
+    print(choice_size, choice_color, choice_number)
+    Clothes_option_order_detail(clothes_order_pk=choice_user.self_data, clothes_order_img=choice_shop,
+        clothes_option_order_size=choice_size, clothes_option_order_color=choice_color, clothes_order_number=choice_number).save()
     return redirect('mainapp:main')

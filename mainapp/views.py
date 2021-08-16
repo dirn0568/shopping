@@ -8,7 +8,7 @@ from mainapp.models import Self_create_shop
 from shop_divisionapp.forms import Create_clothes_choice_option_size, \
     Create_clothes_choice_option_title, Create_clothes_choice_option_color, Create_clothes_choice_option_number
 from shop_divisionapp.models import Clothes_option_detail_size, Clothes_option_title, \
-    Clothes_option_size, Clothes_option_detail_title, Clothes_option_color
+    Clothes_option_size, Clothes_option_detail_title, Clothes_option_color, Clothes_option_order_detail
 
 
 def mainnet(request):
@@ -48,6 +48,17 @@ def detail_shop(request, pk):
         context['옷가격'] = mbti.shop_cash
         context['shop_pk'] = mbti.pk
     return render(request, 'detail_shop.html', context)
+
+def order_list(request):
+    choice_user = Self_data.objects.last()
+    choice_shop = Clothes_option_order_detail.objects.filter(clothes_order_pk=choice_user.self_data)
+    print(choice_shop)
+    context = {}
+    context['옷주문'] = []
+    for mbti in choice_shop:
+        context['옷주문'].append(mbti)
+    print(context['옷주문'], '345135132513531')
+    return render(request, 'order_list.html', context)
 
 
 

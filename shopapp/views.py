@@ -19,8 +19,15 @@ def shop_list(request, pk):
     user_obj = Self_user.objects.filter(pk=pk)
     for box_obj in user_obj:
         box_obj = Self_box.objects.filter(self_box=box_obj)
+    for shop in box_obj:
+        shop = Self_create_shop.objects.filter(shop_name=shop.box_name)
+    for shop_pk in shop:
+        shop_pk = shop_pk.pk
+    print(box_obj)
+    print(shop_pk)
     context={}
     context['장바구니'] = box_obj
+    context['shop_pk'] = shop_pk
     return render(request, 'list_shop.html', context)
 
 def shop_delete(request, pk):

@@ -14,12 +14,12 @@
     <p></p>
     <form action="{% url 'shop_order_app:order_ckeck' pk=shop_pk %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <select>
+        <select name="choice">
             {% for choice_option in order_size %}
             <option value="{{ choice_option }}">{{ choice_option }}</option>
             {% endfor %}
         </select>
-        <select>
+        <select name="choice2">
             {% for choice_option2 in order_color %}
             <option value="{{ choice_option2 }}">{{ choice_option2 }}</option>
             {% endfor %}

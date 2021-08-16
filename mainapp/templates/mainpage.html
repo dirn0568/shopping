@@ -12,7 +12,7 @@
         <a href="{% url 'accountapp:account_logout' %}">로그아웃</a>
         <a href="{% url 'accountapp:account_detail' pk=data_pk %}">개인 페이지</a>
         <a href="{% url 'accountapp:account_detail' pk=data_pk %}">출석체크</a>
-        <a href="{% url 'accountapp:account_detail' pk=data_pk %}">주문내역조회</a>
+        <a href="{% url 'mainapp:order_list' %}">주문내역조회</a>
         <a href="{% url 'shopapp:shop_list' pk=data_pk %}">장바구니</a>
     {% endif %}
     <a href="{% url 'accountapp:account_create' %}">회원가입</a>
