@@ -11,7 +11,9 @@ from shop_divisionapp.models import Clothes_option_detail_title, Clothes_option_
 
 def order(request, pk):
     shop_url = Self_create_shop.objects.filter(pk=pk)
+    print(shop_url)
     clothes_title = Clothes_option_detail_title.objects.filter(pk=pk)
+    print(clothes_title)
     for mbti in clothes_title:
         clothes_detail_title = mbti.clothes_option_detail_title
     clothes_choice = Clothes_option_size.objects.filter(clothes_option_size=clothes_detail_title)
@@ -25,6 +27,8 @@ def order(request, pk):
         form.Meta.fields.append(mbti.clothes_size)
     for mbti in clothes_choice2:
         form2.Meta.fields.append(mbti.clothes_color)
+    print(form.Meta.fields)
+    print(form2.Meta.fields)
     context['order_size'] = form.Meta.fields
     context['order_color'] = form2.Meta.fields
     context['order_number'] = Create_clothes_choice_option_number

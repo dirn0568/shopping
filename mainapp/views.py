@@ -23,14 +23,28 @@ def mainnet(request):
 
     return render(request, 'mainpage.html', context)
 
+def mainnet_option(request, word):
+    context = {}
+    if Self_data.objects.last():
+        data = Self_data.objects.last()
+        context['data_pk'] = data.self_pk
+    print(word, '#$@$#@$!#%!$%#!@#$!@$!@$!@')
+    context['샵목록'] = Self_create_shop.objects.filter(shop_title=word)
+    # for mbti in data:
+    #     print(mbti.self_pk, '33333333333333333333')
+    #     context['data_pk'] = mbti.self_pk
+
+    return render(request, 'mainpage_option.html', context)
+
 def create_shop(request):
     if request.method == "POST":
-        print(request.POST, '새로추가!@#%!%!#%!#%!#%!#%$!$@!')
         form = Self_create_form(request.POST, request.FILES)
         form2 = Create_clothes_choice_option_title(request.POST)
         if form.is_valid() and form2.is_valid():
-            form.save()
             form2.save()
+            temp_form = form.save(commit=False)
+            temp_form.shop_title = Clothes_option_detail_title.objects.last().clothes_option_detail_title.clothes_title
+            temp_form.save()
         else:
             raise Http404("옷제작이 되지않았습니다")
         return redirect('mainapp:main')

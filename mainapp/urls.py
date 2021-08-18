@@ -7,6 +7,7 @@ app_name = 'mainapp'
 
 urlpatterns = [
     path('', views.mainnet, name='main'),
+    path('main_option/<word>', views.mainnet_option, name='main_option'),
 
     path('create_shop', views.create_shop, name='create_shop'),
     path('detail_shop/<int:pk>', views.detail_shop, name='detail_shop'),

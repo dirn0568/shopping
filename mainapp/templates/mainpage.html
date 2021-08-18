@@ -11,21 +11,19 @@
         {{ data_pk }}
         <a href="{% url 'accountapp:account_logout' %}">로그아웃</a>
         <a href="{% url 'accountapp:account_detail' pk=data_pk %}">개인 페이지</a>
-        <a href="{% url 'accountapp:account_detail' pk=data_pk %}">출석체크</a>
         <a href="{% url 'mainapp:order_list' %}">주문내역조회</a>
         <a href="{% url 'shopapp:shop_list' pk=data_pk %}">장바구니</a>
     {% endif %}
     <a href="{% url 'accountapp:account_create' %}">회원가입</a>
 
     <h1>개인 쇼핑몰 연습장</h1>
-
-    <a href="{% url 'accountapp:account_logout' %}">정장</a>
-    <a href="{% url 'accountapp:account_logout' %}">셔츠</a>
-    <a href="{% url 'accountapp:account_logout' %}">반팔</a>
-    <a href="{% url 'accountapp:account_logout' %}">바지</a>
-    <a href="{% url 'accountapp:account_logout' %}">반바지</a>
-    <a href="{% url 'accountapp:account_logout' %}">신발</a>
-    <a href="{% url 'accountapp:account_logout' %}">악세사리</a>
+    <a href="{% url 'mainapp:main' %}">All</a>
+    <a href="{% url 'mainapp:main_option' word='정장' %}">정장</a>
+    <a href="{% url 'mainapp:main_option' word='셔츠' %}">셔츠</a>
+    <a href="{% url 'mainapp:main_option' word='시계' %}">시게</a>
+    <a href="{% url 'mainapp:main_option' word='넥타이' %}">넥타이</a>
+    <a href="{% url 'mainapp:main_option' word='바지' %}">바지</a>
+    <a href="{% url 'mainapp:main_option' word='양말' %}">양말</a>
     <p></p>
 
 
@@ -34,5 +32,8 @@
             <img src="{{ shop_list.shop_img.url }}" alt="" width="300" height="300" style="border-radius: 20px;">
         </a>
     {% endfor %}
+    <h1>
+        <a href="{% url 'mainapp:create_shop' %}">Create Shop</a>
+    </h1>
 </body>
 </html>
